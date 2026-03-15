@@ -26,9 +26,11 @@ export default function AdminDashboard() {
     setAllStudents(getAllStudents()); // keep local for now
   }, [navigate]);
 
+  const apiBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
   const fetchAllDocuments = async (token: string) => {
     try {
-      const res = await fetch("http://localhost:8000/api/admin/documents", {
+      const res = await fetch(`${apiBase}/api/admin/documents`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
